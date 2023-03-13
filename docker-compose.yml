@@ -1,0 +1,30 @@
+version: '3'
+
+networks:
+  network_api_gerenciador_tarefas:
+    driver: bridge
+
+services:
+  php_apache:
+    build: ./
+    container_name: container_php_apache_gerenciador_de_tarefas
+    networks:
+      - network_api_gerenciador_tarefas
+    ports:
+      - '8080:80'
+    volumes:
+      - ./app:/var/www/html
+    
+  mysql:
+    image: mysql:latest
+    container_name: container_mysql_gerenciador_de_tarefas
+    networks:
+      - network_api_gerenciador_tarefas
+    ports:
+      - '9000:3306'
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    volumes:
+      - ./docker_volumes/mysql:/var/lib/mysql
+
+    
