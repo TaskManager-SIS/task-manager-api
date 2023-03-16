@@ -24,11 +24,11 @@ try {
         $conexaoBancoDados = ConexaoBancoDados::obterConexaoBancoDados();
         $usuarioRepositorio = new UsuarioRepositorio($conexaoBancoDados);
         $usuarioComEmailInformado = $usuarioRepositorio->consultarSenhaUsuarioPeloEmail($email);
+
         if ($usuarioComEmailInformado != false) {
             $senha = $usuarioComEmailInformado->senha;
             // enviar e-mail para o usário contendo a senha dele
-            EnvioEmail::enviarEmail($email, 'Se houver um perfil cadastrado com o e-mail informado, em breve você receberá '
-            . 'em seu e-mail uma mensagem contendo sua senha!');
+            EnvioEmail::enviarEmail($email, 'Sua senha é: ' . $senha);
         }
 
         respostaHttp([
