@@ -9,7 +9,7 @@ try {
         respostaHttp([
             'msg' => 'Informe o id da tarefa!',
             'dados' => null
-        ], 400);
+        ], 200);
     } else {
         $idTarefa = intval($_GET['id']);
         $conexaoBancoDados = ConexaoBancoDados::obterConexaoBancoDados();
@@ -35,5 +35,5 @@ try {
     respostaHttp([
         'msg' => 'Ocorreu um erro ao tentar-se buscar a tarefa pelo id!',
         'dados' => null
-    ]);
+    ], 500);
 }

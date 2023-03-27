@@ -18,14 +18,14 @@ try {
         respostaHttp([
             'msg' => 'Informe todos os dados obrigatórios!',
             'dados' => null
-        ], 400);
+        ], 200);
     } elseif (!ValidaEmail::validarEmail($email)) {
         respostaHttp([
             'msg' => 'E-mail inválido!',
             'dados' => null
-        ], 400);
+        ], 200);
     } else {
-        $senha = md5($senha);
+        $senha = password_hash($senha, PASSWORD_BCRYPT);
         $usuarioRepositorio = new UsuarioRepositorio($conexaoBancoDados);
 
         // verificando se já existe algum usuário cadastrado com o e-mail informado
@@ -34,7 +34,7 @@ try {
             respostaHttp([
                 'msg' => 'Informe outro e-mail!',
                 'dados' => null
-            ], 400);
+            ], 200);
         } else {
             // ainda não existe um usuário cadastrado com o e-mail informado
             

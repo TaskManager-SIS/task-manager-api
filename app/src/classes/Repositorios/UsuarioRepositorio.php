@@ -52,7 +52,16 @@ class UsuarioRepositorio
     }
 
     public function editarUsuario($id, $nome, $email, $senha, $ativo) {
-        
+        $query = 'UPDATE tbl_usuarios SET nome = :nome, email = :email,
+        senha = :senha, ativo = :ativo WHERE id = :id;';
+        $stmt = $this->conexaoBancoDados->prepare($query);
+        $stmt->bindValue(':nome', $nome);
+        $stmt->bindValue(':email', $email);
+        $stmt->bindValue(':senha', $senha);
+        $stmt->bindValue(':ativo', $ativo, PDO::PARAM_BOOL);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+
+        return $stmt->execute();
     }
 
     public function verificarSeExisteUsuarioCadastradoComEmailInformado($email) {
@@ -71,6 +80,16 @@ class UsuarioRepositorio
 
     public function consultarSenhaUsuarioPeloEmail($email) {
         $query = 'SELECT senha FROM tbl_usuarios WHERE email = :email;';
+        $stmt = $this->conexaoBancoDados->prepare($query);
+        $stmt->bindValue(':email', $email);
+        $stmt->execute();
+        $usuario = $stmt->fetch(PDO::FETCH_OBJ);
+
+        return $usuario;
+    }
+
+    public function buscarIdUsuarioPeloEmail($email) {
+        $query = 'SELECT id FROM tbl_usuarios WHERE email = :email;';
         $stmt = $this->conexaoBancoDados->prepare($query);
         $stmt->bindValue(':email', $email);
         $stmt->execute();

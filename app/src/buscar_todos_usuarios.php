@@ -14,6 +14,13 @@ try {
         
         foreach ($usuarios as $usuario) {
             $usuario->id = intval($usuario->id);
+
+            if ($usuario->ativo == 1) {
+                $usuario->ativo = true;
+            } else {
+                $usuario->ativo = false;
+            }
+
         }
 
     }

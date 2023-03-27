@@ -14,12 +14,12 @@ try {
         respostaHttp([
             'msg' => 'Informe o e-mail!',
             'dados' => null
-        ], 400);
+        ], 200);
     } elseif (ValidaEmail::validarEmail($email) === false) {
         respostaHttp([
             'msg' => 'E-mail inválido!',
             'dados' => null
-        ], 400);
+        ], 200);
     } else {
         $conexaoBancoDados = ConexaoBancoDados::obterConexaoBancoDados();
         $usuarioRepositorio = new UsuarioRepositorio($conexaoBancoDados);

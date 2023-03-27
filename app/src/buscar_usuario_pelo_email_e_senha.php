@@ -16,12 +16,12 @@ try {
         respostaHttp([
             'msg' => 'Informe todos os dados obrigatórios!',
             'dados' => null
-        ], 400);
+        ], 200);
     } elseif (!ValidaEmail::validarEmail($email)) {
         respostaHttp([
             'msg' => 'Formato de e-mail inválido!',
             'dados' => null
-        ], 400);
+        ], 200);
     } else {
         $senha = md5($senha);
         $usuarioRepositorio = new UsuarioRepositorio($conexaoBancoDados);
@@ -34,6 +34,7 @@ try {
             ], 404);
         } else {
             $usuario->id = intval($usuario->id);
+            $usuario->ativo = $usuario->ativo == 1 ? true : false;
             respostaHttp([
                 'msg' => 'Usuário encontrado com sucesso!',
                 'dados' => $usuario
@@ -47,5 +48,5 @@ try {
     respostaHttp([
         'msg' => 'Ocorreu um erro ao tentar-se buscar o usuário pelo e-mail e senha!',
         'dados' => null
-    ]);
+    ], 500);
 }

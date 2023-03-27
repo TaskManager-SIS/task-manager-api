@@ -17,7 +17,7 @@ try {
         respostaHttp([
             'msg' => 'Informe todos os dados obrigatórios!',
             'dados' => null
-        ], 400);
+        ], 200);
     } else {
         $usuarioId = intval($usuarioId);
         $tarefaRepositorio = new TarefaRepositorio($conexaoBancoDados);

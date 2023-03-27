@@ -19,6 +19,13 @@ try {
             ], 404);
         } else {
             $usuario->id = intval($usuario->id);
+
+            if ($usuario->ativo == 1) {
+                $usuario->ativo = true;
+            } else {
+                $usuario->ativo = false;
+            }
+
             respostaHttp([
                 'msg' => 'Usuário encontrado com sucesso!',
                 'dados' => $usuario
@@ -29,7 +36,7 @@ try {
         respostaHttp([
             'msg' => 'Informe o id do usuário!',
             'dados' => null
-        ], 400);
+        ], 200);
     }
 
 } catch (Exception $e) {
