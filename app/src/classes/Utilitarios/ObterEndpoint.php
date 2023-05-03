@@ -5,9 +5,9 @@ namespace GerenciadorTarefas\App\Utilitarios;
 class ObterEndpoint
 {
 
-    public static function obterEndpoint() {
+    public static function obterEndpoint($urlInformada) {
         $endpoint = '';
-        $uri = $_SERVER['REQUEST_URI'];
+        $uri = $urlInformada;
     
         if (strpos($uri, '?')) {
             $uriArray = explode('?', $uri);

@@ -7,7 +7,7 @@ require_once 'src/resposta_http.php';
 
 use GerenciadorTarefas\App\Utilitarios\ObterEndpoint;
 
-$endpoint = ObterEndpoint::obterEndpoint();
+$endpoint = ObterEndpoint::obterEndpoint($_SERVER['REQUEST_URI']);
 $metodoHttp = $_SERVER['REQUEST_METHOD'];
 
 if ($metodoHttp === 'POST') {
