@@ -5,7 +5,7 @@ use PHPUnit\Framework\TestCase;
 
 class ObterEndpointTest extends TestCase
 {
-
+    
     /**
      * @test
      */

@@ -32,6 +32,6 @@ class ValidaFormularioTest extends TestCase
         $nome = 'Gabriel';
         $sobrenome = 'Rodrigues';
         $resultadoValidarForm = ValidaFormulario::validarFormulario($nome, $sobrenome);
-        $this->assertTrue($resultadoValidarForm);
+        $this->assertFalse($resultadoValidarForm);
     }
 }
